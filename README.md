@@ -72,6 +72,23 @@ bash status.sh s
 
 然后安装客户端，根据提示填写 服务端的IP 和前面添加/修改 对应的 节点用户名和密码（用于和服务端验证），然后启动就好了，有问题请贴出 详细步骤+日志(如果有)联系我。
 
+## 部分客户端无法与服务端通信的解决方式：
+
+查看客户端日志可看到报错：
+
+``` bash
+Connecting...
+Caught Exception: a bytes-like object is required, not 'str'
+```
+这是因为 客户端的Python版本 与 服务端的Python版本 有兼容性问题。如 服务端为 2.X 版本，客户端为 3.X 版本，则会出现这种问题。
+
+将双方的Python版本都调整到 2.X 版本就能解决问题。
+
+先卸载 Python 3.X 版本，然后安装 Python 2.X 版本。
+
+然后 Python2.X 版本的运行方式可能会是 python2.X xxxx。这时你改下  /etc/init.d/status-server  or  /etc/init.d/status-client 中的执行命令即可。也可以直接 alias ?
+
+
 # 使用说明：
 
 进入下载脚本的目录并运行脚本：
